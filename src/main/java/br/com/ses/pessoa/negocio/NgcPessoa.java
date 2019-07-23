@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.ses.pessoa.modelo.Pessoa;
@@ -40,9 +41,10 @@ public class NgcPessoa {
     return this.pessoaRepository.getPessoas( pessoa );
   }
 
+  @Transactional
   public Pessoa criar( Pessoa pessoa, HttpServletResponse response ) {
 
-    Pessoa pessoaSalva = this.pessoaRepository.salvar( pessoa );
+    Pessoa pessoaSalva = this.pessoaRepository.save( pessoa );
 
     URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path( "/{codigo}" )
         .buildAndExpand( pessoaSalva.getId() ).toUri();
@@ -52,6 +54,7 @@ public class NgcPessoa {
     return pessoaSalva;
   }
 
+  @Transactional
   public Pessoa atualizar( Long codigo, Pessoa pessoa, HttpServletResponse response ) {
 
     Optional<Pessoa> optional = this.pessoaRepository.findById( codigo );
@@ -60,7 +63,7 @@ public class NgcPessoa {
       throw new EmptyResultDataAccessException( 1 );
     }
 
-    Pessoa pessoaSalva = this.pessoaRepository.salvar( pessoa );
+    Pessoa pessoaSalva = this.pessoaRepository.save( pessoa );
 
     return pessoaSalva;
   }

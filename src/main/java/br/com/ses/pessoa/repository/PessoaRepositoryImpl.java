@@ -24,7 +24,7 @@ public class PessoaRepositoryImpl implements PessoaRepositoryQueries {
 
     StringBuilder sb = new StringBuilder();
 
-    sb.append( " SELECT p FROM Pessoa p LEFT JOIN FETCH p.lstTelefone lstT WHERE " );
+    sb.append( " SELECT p FROM Pessoa p LEFT JOIN p.lstTelefone lstT WHERE " );
 
     if ( pessoa.getNome() != null && !pessoa.getNome().isEmpty() ) {
       sb.append( " UPPER(p.nome) LIKE :nome AND " );
@@ -43,12 +43,6 @@ public class PessoaRepositoryImpl implements PessoaRepositoryQueries {
     Util.setarParametroWhere( mapParams, query );
 
     return query.getResultList();
-  }
-
-  @Override
-  public Pessoa salvar( Pessoa pessoa ) {
-
-    return this.entityManager.merge( pessoa );
   }
 
 }

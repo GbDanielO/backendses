@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Telefone implements Serializable {
 
   private String numero;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_pessoa")
   private Pessoa pessoa;
 
@@ -55,6 +56,14 @@ public class Telefone implements Serializable {
 
   public void setNumero( String numero ) {
     this.numero = numero;
+  }
+
+  public Pessoa getPessoa() {
+    return pessoa;
+  }
+
+  public void setPessoa( Pessoa pessoa ) {
+    this.pessoa = pessoa;
   }
 
   @Override

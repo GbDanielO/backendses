@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.ses.contato.modelo.Telefone;
 
 @Entity
@@ -37,6 +39,7 @@ public class Pessoa implements Serializable {
   @Column(name = "dt_nascimento")
   private Date dtNascimento;
 
+  @JsonIgnoreProperties("pessoa")
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "pessoa")
   private List<Telefone> lstTelefone;
 

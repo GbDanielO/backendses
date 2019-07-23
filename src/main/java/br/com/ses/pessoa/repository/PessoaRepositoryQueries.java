@@ -8,6 +8,4 @@ public interface PessoaRepositoryQueries {
 
   public List<Pessoa> getPessoas( Pessoa pessoa );
 
-  public Pessoa salvar( Pessoa pessoa );
-
 }
