@@ -32,12 +32,12 @@ public class PessoaResource {
 
   @GetMapping
   public List<Pessoa> listar() {
-    return ngcPessoa.listar();
+    return this.ngcPessoa.listar();
   }
 
   @GetMapping("/{codigo}")
   public ResponseEntity<Pessoa> buscarPeloCodigo( @PathVariable Long codigo ) {
-    return ngcPessoa.buscarPeloCodigo( codigo );
+    return this.ngcPessoa.buscarPeloCodigo( codigo );
   }
 
   @PostMapping("/filter")
@@ -49,20 +49,20 @@ public class PessoaResource {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public Pessoa criar( @Valid @RequestBody Pessoa pessoa, HttpServletResponse response ) {
-    return ngcPessoa.criar( pessoa, response );
+    return this.ngcPessoa.criar( pessoa, response );
   }
 
   @PutMapping("/{codigo}")
   @ResponseStatus(HttpStatus.OK)
   public Pessoa atualizar( @PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa,
       HttpServletResponse response ) {
-    return ngcPessoa.atualizar( codigo, pessoa, response );
+    return this.ngcPessoa.atualizar( codigo, pessoa, response );
   }
 
   @DeleteMapping("/{codigo}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete( @PathVariable Long codigo ) {
-    ngcPessoa.delete( codigo );
+    this.ngcPessoa.delete( codigo );
   }
 
 }

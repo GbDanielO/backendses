@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.ses.contato.modelo.Telefone;
 import br.com.ses.pessoa.modelo.Pessoa;
 import br.com.ses.pessoa.repository.PessoaRepository;
 
@@ -44,6 +45,10 @@ public class NgcPessoa {
   @Transactional
   public Pessoa criar( Pessoa pessoa, HttpServletResponse response ) {
 
+    for ( Telefone telefone : pessoa.getLstTelefone() ) {
+      telefone.setPessoa( pessoa );
+    }
+
     Pessoa pessoaSalva = this.pessoaRepository.save( pessoa );
 
     URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path( "/{codigo}" )
@@ -56,6 +61,10 @@ public class NgcPessoa {
 
   @Transactional
   public Pessoa atualizar( Long codigo, Pessoa pessoa, HttpServletResponse response ) {
+
+    for ( Telefone telefone : pessoa.getLstTelefone() ) {
+      telefone.setPessoa( pessoa );
+    }
 
     Optional<Pessoa> optional = this.pessoaRepository.findById( codigo );
 
