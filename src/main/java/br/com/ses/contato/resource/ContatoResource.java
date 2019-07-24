@@ -19,7 +19,7 @@ public class ContatoResource {
   @Autowired
   private NgcContato ngcContato;
 
-  @DeleteMapping("/telefone/{codigo}")
+  @DeleteMapping("/telefones/{codigo}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteTelefone( @PathVariable Long codigo ) {
     this.ngcContato.excluirTelefone( codigo );
