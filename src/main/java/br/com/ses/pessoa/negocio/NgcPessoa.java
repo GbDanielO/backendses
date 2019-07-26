@@ -81,7 +81,7 @@ public class NgcPessoa {
     this.pessoaRepository.deleteById( codigo );
   }
 
-  public Optional<br.com.ses.pessoa.modelo.Pessoa> buscarPessoaPeloCodigo( Long codigo ) {
+  public Optional<Pessoa> buscarPessoaPeloCodigo( Long codigo ) {
     return this.pessoaRepository.findById( codigo );
   }
 }
