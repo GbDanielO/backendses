@@ -45,8 +45,10 @@ public class NgcPessoa {
   @Transactional
   public Pessoa criar( Pessoa pessoa, HttpServletResponse response ) {
 
-    for ( Telefone telefone : pessoa.getLstTelefone() ) {
-      telefone.setPessoa( pessoa );
+    if ( pessoa.getLstTelefones() != null && !pessoa.getLstTelefones().isEmpty() ) {
+      for ( Telefone telefone : pessoa.getLstTelefones() ) {
+        telefone.setPessoa( pessoa );
+      }
     }
 
     Pessoa pessoaSalva = this.pessoaRepository.save( pessoa );
@@ -62,8 +64,10 @@ public class NgcPessoa {
   @Transactional
   public Pessoa atualizar( Long codigo, Pessoa pessoa, HttpServletResponse response ) {
 
-    for ( Telefone telefone : pessoa.getLstTelefone() ) {
-      telefone.setPessoa( pessoa );
+    if ( pessoa.getLstTelefones() != null && !pessoa.getLstTelefones().isEmpty() ) {
+      for ( Telefone telefone : pessoa.getLstTelefones() ) {
+        telefone.setPessoa( pessoa );
+      }
     }
 
     Optional<Pessoa> optional = this.pessoaRepository.findById( codigo );

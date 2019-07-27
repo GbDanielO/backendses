@@ -41,7 +41,7 @@ public class Pessoa implements Serializable {
 
   @JsonIgnoreProperties("pessoa")
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "pessoa")
-  private List<Telefone> lstTelefone;
+  private List<Telefone> lstTelefones;
 
   public Long getId() {
     return id;
@@ -83,12 +83,12 @@ public class Pessoa implements Serializable {
     this.dtNascimento = dtNascimento;
   }
 
-  public List<Telefone> getLstTelefone() {
-    return lstTelefone;
+  public List<Telefone> getLstTelefones() {
+    return lstTelefones;
   }
 
-  public void setLstTelefone( List<Telefone> lstTelefone ) {
-    this.lstTelefone = lstTelefone;
+  public void setLstTelefones( List<Telefone> lstTelefone ) {
+    this.lstTelefones = lstTelefone;
   }
 
   @Override
