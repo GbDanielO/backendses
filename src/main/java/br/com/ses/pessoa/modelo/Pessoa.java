@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -36,6 +38,7 @@ public class Pessoa implements Serializable {
 
   private String cpf;
 
+  @Temporal(TemporalType.DATE)
   @Column(name = "dt_nascimento")
   private Date dtNascimento;
 
